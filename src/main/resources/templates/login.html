@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html><head>
+    <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet" />
+    <link href="/css/public/main2.css" rel="stylesheet" />
+    <title>Document</title>
+</head>
+<body>
+<div th:if="${param.error}">Invalid email or password.</div>
+<div th:if="${param.logout}">You have been logged out.</div>
+<form th:action="@{/login}" method="post">
+<div class="v14_128">
+    <div class="v14_21">
+        <div class="v1_2">
+
+        </div><div class="v6_6">
+        <div class="v6_7">
+            <div class="v1_12">
+
+            </div></div>
+        <div class="v6_5">
+            <span class="v1_21">ВОЙТИ   <input type="submit" value="Log In" /> </span>
+
+        </div>
+
+    </div>
+        <div class="v1_8"><input type="text" name="username" placeholder="username"/></div>
+
+        <div class="v1_9"> <input type="password" name="password" placeholder="Password"/></div>
+
+      <div class="name">
+
+      </div>
+        <h3><a href="register">Создать нового пользователя</a></h3>
+        <a href="http://localhost:8080/profile/admin">admin</a>
+        <a href="http://localhost:8080/index">user</a>
+    </div>
+</div>
+</body>
+</html>
