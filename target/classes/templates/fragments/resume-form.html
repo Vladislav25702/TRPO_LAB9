@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8" />
+<head>
+    <title>Фрагменты для формы резюме</title>
+</head>
+<body>
+<div th:fragment="personal-info-form">
+    <fieldset>
+        <legend>Личная информация</legend>
+        <div class="form-group">
+            <label for="firstName">Имя:</label>
+            <input type="text" id="firstName" th:field="*{personalInfo.firstName}" class="form-control" >
+        </div>
+        <div class="form-group">
+            <label for="lastName">Фамилия:</label>
+            <input type="text" id="lastName" th:field="*{personalInfo.lastName}" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="dateOfBirth">Дата рождения:</label>
+            <input type="date" id="dateOfBirth" th:field="*{personalInfo.dateOfBirth}" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="address">Адрес:</label>
+            <input type="text" id="address" th:field="*{personalInfo.address}" class="form-control">
+        </div>
+    </fieldset>
+</div>
+
+
+<div th:fragment="education-form">
+    <fieldset>
+        <legend>Образование</legend>
+        <div th:each="education, educationStat : *{educations}">
+            <div class="border p-3 mb-3">
+                <div class="form-group">
+                    <label th:for="'educations[' + ${educationStat.index} + '].schoolName'">ВУЗ:</label>
+                    <input type="text" th:field="*{educations[__${educationStat.index}__].location}" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label th:for="'educations[' + ${educationStat.index} + '].degree'">Степень:</label>
+                    <input type="text" th:field="*{educations[__${educationStat.index}__].degree}" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label th:for="'educations[' + ${educationStat.index} + '].endDate'">Дата окончания:</label>
+                    <input type="date" th:field="*{educations[__${educationStat.index}__].endDate}" class="form-control">
+                </div>
+            </div>
+        </div>
+        <button type="button" class="btn btn-secondary add-education">Добавить образование</button>
+    </fieldset>
+</div>
+<div th:fragment="experience-form">
+    <fieldset>
+        <legend>Опыт работы</legend>
+        <div th:each="experience, experienceStat : *{experience}">
+            <div class="border p-3 mb-3">
+                <div class="form-group">
+                    <label th:for="'experiences[' + ${experienceStat.index} + '].companyName'">Компания:</label>
+                    <input type="text" th:field="*{experiences[__${experienceStat.index}__].companyName}" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label th:for="'experiences[' + ${experienceStat.index} + '].position'">Должность:</label>
+                    <input type="text" th:field="*{experiences[__${experienceStat.index}__].position}" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label th:for="'experiences[' + ${experienceStat.index} + '].startDate'">Дата начала:</label>
+                    <input type="date" th:field="*{experiences[__${experienceStat.index}__].startDate}" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label th:for="'experiences[' + ${experienceStat.index} + '].endDate'">Дата окончания:</label>
+                    <input type="date" th:field="*{experiences[__${experienceStat.index}__].endDate}" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label th:for="'experiences[' + ${experienceStat.index} + '].description'">Описание:</label>
+                    <textarea  th:field="*{experiences[__${experienceStat.index}__].description}" class="form-control"></textarea>
+                </div>
+            </div>
+        </div>
+        <button type="button" class="btn btn-secondary add-experience">Добавить опыт</button>
+    </fieldset>
+</div>
+
+</body>
+</html>

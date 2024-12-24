@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org"
+      lang="en">
+<head>
+    <title>Log In</title>
+    <style>
+        body {
+            background: rgba(217, 217, 217, 1);
+            display: flex; /* Use flexbox */
+            justify-content: center; /* Center content horizontally */
+            align-items: center; /* Center content vertically */
+            min-height: 100vh; /* Ensure content is centered on the whole viewport*/
+            margin: 0; /* remove default body margin*/
+        }
+
+        form {
+            padding: 20px;
+            background: rgba(255, 255, 255, 1);
+            border-radius: 10px;
+            display: flex; /* Use flexbox for form elements */
+            flex-direction: column; /* Arrange elements in a column */
+            align-items: center; /* Center elements horizontally within the form*/
+        }
+
+        input {
+            margin-bottom: 10px; /* Add some space between inputs */
+            padding: 8px; /* Add some padding to the inputs */
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        h3 {
+            margin-top: 15px; /* add some margin above the registration link */
+        }
+        h1 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<form th:action="@{/login}" method="post">
+    <h1>Please Log In</h1>
+    <div th:if="${param.error}">Invalid email or password.</div>
+    <div th:if="${param.logout}">You have been logged out.</div>
+    <div>
+        <input type="text" name="username" placeholder="Username"/>
+    </div>
+    <div>
+        <input type="password" name="password" placeholder="Password"/>
+    </div>
+    <input type="submit" value="Log In" />
+    <h3><a href="register">Создать нового пользователя</a></h3>
+</form>
+</body>
+</html>

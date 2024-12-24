@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Просмотр резюме</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1>Резюме</h1>
+    <div th:if="${resume}">
+        <p><strong>Специальность:</strong> <span th:text="${resume.information}"></span></p>
+        <p><strong>Студент</strong>
+        </p>
+        <p><strong>Имя:</strong> <span th:text="${resume.name}"></span></p>
+        <p><strong>Фамилия:</strong> <span th:text="${resume.surname}"></span></p>
+        <p><strong>Отчество:</strong> <span th:text="${resume.ot}"></span></p>
+        <p><strong>Адрес:</strong> <span th:text="${resume.address}"></span></p>
+        <p><strong>Email:</strong> <span th:text="${resume.email}"></span></p>
+        <p><strong>Телефон:</strong> <span th:text="${resume.phone}"></span></p>
+        <p><strong>Дата Рождения:</strong> <span th:text="${resume.dateofbirth}"></span></p>
+
+        <hr/>
+        <h2>Опыт работы</h2>
+        <div th:if="${not #lists.isEmpty(resume.experiences)}">
+            <div th:each="experience : ${resume.experiences}">
+                <div class="border p-3 mb-3">
+                    <p><strong>Локация:</strong> <span th:text="${experience.location}"></span></p>
+                    <p><strong>Позиция:</strong> <span th:text="${experience.position}"></span></p>
+                    <p><strong>Описание:</strong> <span th:text="${experience.desctiption}"></span></p>
+                    <p><strong>Дата начала:</strong> <span th:text="${experience.startdate}"></span></p>
+                    <p><strong>Дата окончания:</strong> <span th:text="${experience.enddate}"></span></p>
+                </div>
+            </div>
+        </div>
+        <div th:unless="${not #lists.isEmpty(resume.experiences)}">
+            <p>Нет опыта работы</p>
+        </div>
+        <hr/>
+        <h2>Образование</h2>
+        <div th:if="${not #lists.isEmpty(resume.educations)}">
+            <div th:each="education : ${resume.educations}">
+                <div class="border p-3 mb-3">
+                    <p><strong>Локация:</strong> <span th:text="${education.location}"></span></p>
+                    <p><strong>Специальность:</strong> <span th:text="${education.speciality}"></span></p>
+                    <p><strong>Дата окончания:</strong> <span th:text="${education.enddate}"></span></p>
+                </div>
+            </div>
+        </div>
+        <div th:unless="${not #lists.isEmpty(resume.educations)}">
+            <p>Нет данных об образовании</p>
+        </div>
+        <h2>Навыки</h2>
+        <div th:if="${not #lists.isEmpty(resume.skills)}">
+            <ul class="list-group">
+                <li class="list-group-item" th:each="skill : ${resume.skills}" th:text="${skill.name}"></li>
+            </ul>
+        </div>
+        <div th:unless="${not #lists.isEmpty(resume.skills)}">
+            <p>Нет данных о навыках</p>
+        </div>
+    </div>
+    </div>
+    <div th:unless="${resume}">
+        <p>Резюме не найдено</p>
+    </div>
+</div>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
